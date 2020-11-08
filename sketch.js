@@ -1,37 +1,54 @@
-var bullet, wall;
-var speed, weight;
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
 
-function setup() {
-  createCanvas(1600,400);
-  createSprite(400, 200, 50, 50);
+var bottomBody, leftBody, rightBody, ground;
+//var ground;
 
-  speed = random(55,90);
-  weight = random(400,1500);
-
-  bullet = createSprite(50, 200, 50, 10);
-  wall = createSprite(1500, 200, 60, 50);
-  car.velocityX = speed;
-
+function preload()
+{
+	
 }
 
+function setup() {
+	createCanvas(1800, 700);
+	background(0,0,0);
+
+	engine = Engine.create();
+	world = engine.world;
+
+	//Create the Bodies Here.
+	bottomBody = Bodies.rectangle(width/1.2, 650, 200, 20, {isStatic:true});
+	leftBody = Bodies.rectangle(width/1.2-100, 610, 20, 100, {isStatic:true});
+	rightBody = Bodies.rectangle(width/1.2+100, 610, 20, 100, {isStatic:true});
+
+	leftSprite = createSprite(width/1.2-100, 610, 20, 100);
+	leftSprite.shapeColor = color("white");
+
+	rightSprite = createSprite(width/1.2+100, 610, 20, 100);
+	rightSprite.shapeColor = color("white");
+
+	bottomSprite = createSprite(width/1.2, 650, 200, 20);
+	bottomSprite.shapeColor = color("white");
+
+	ball = new Ball(165, 200, 20);
+	
+	ground = createSprite(900, 650, 1800, 20);
+	//ground.shapeColor("white");
+	
+	Engine.run(engine);
+  
+  
+}
+
+
 function draw() {
-  background(0,0,0);  
-
-  if(wall.x-car.x < (car.width+wall.width)/2)  {
-    car.velocityX = 0;
-
-    var deformation = 0.5 * weight * speed * speed/22500
-    
-    if(deforemation>180){
-      car.shapeColor = color(255, 0, 0);
-    }
-    if(deformation<180 && deformation>100){
-      car.shapeColor = color(230,230,0);
-    }
-
-    if(deofrmatiob<100){
-      car.shapeColor=color(0,0,0);
-    }
-  }
+  rectMode(CENTER);
+  background(0);
+ 
+  	ball.display();
+ 
   drawSprites();
+ 
 }

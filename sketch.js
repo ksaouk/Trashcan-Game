@@ -22,6 +22,10 @@ function setup() {
 	bottomBody = Bodies.rectangle(width/1.2, 650, 200, 20, {isStatic:true});
 	leftBody = Bodies.rectangle(width/1.2-100, 610, 20, 100, {isStatic:true});
 	rightBody = Bodies.rectangle(width/1.2+100, 610, 20, 100, {isStatic:true});
+	
+	World.add(world, bottomBody);
+	World.add(world, rightBody);
+	World.add(world, leftBody);
 
 	leftSprite = createSprite(width/1.2-100, 610, 20, 100);
 	leftSprite.shapeColor = color("white");
@@ -34,10 +38,12 @@ function setup() {
 
 	ball = new Ball(165, 200, 20);
 	
-	ground = createSprite(900, 650, 1800, 20);
-	//ground.shapeColor("white");
-	
+	ground = new Ground(900, 650, 1800, 20);
+	ball.collide(ground);
+
 	Engine.run(engine);
+
+	movement();
   
   
 }
@@ -47,8 +53,16 @@ function draw() {
   rectMode(CENTER);
   background(0);
  
-  	ball.display();
+  ball.display();
+  ground.display();
  
   drawSprites();
  
+}
+
+function movment() {
+	if(keyCode === 38){
+		ball.velocityY = -10 ;
+    	ball.velocityY = ball.velocityY + 0.8;
+	}
 }

@@ -39,11 +39,9 @@ function setup() {
 	ball = new Ball(165, 200, 20);
 	
 	ground = new Ground(900, 650, 1800, 20);
-	ball.collide(ground);
 
 	Engine.run(engine);
 
-	movement();
   
   
 }
@@ -60,9 +58,8 @@ function draw() {
  
 }
 
-function movment() {
+function keyPressed() {
 	if(keyCode === 38){
-		ball.velocityY = -10 ;
-    	ball.velocityY = ball.velocityY + 0.8;
+		Matter.Body.applyForce(ball.body, ball.body.poistion, {x:85, y:-85});
 	}
 }

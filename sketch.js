@@ -36,7 +36,7 @@ function setup() {
 	bottomSprite = createSprite(width/1.2, 650, 200, 20);
 	bottomSprite.shapeColor = color("white");
 
-	ball = new Ball(165, 200, 20);
+	ball = new Ball(165, 200, 70);
 	
 	ground = new Ground(900, 650, 1800, 20);
 

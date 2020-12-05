@@ -19,22 +19,7 @@ function setup() {
 	world = engine.world;
 
 	//Create the Bodies Here.
-	bottomBody = Bodies.rectangle(width/1.2, 650, 200, 20, {isStatic:true});
-	leftBody = Bodies.rectangle(width/1.2-100, 610, 20, 100, {isStatic:true});
-	rightBody = Bodies.rectangle(width/1.2+100, 610, 20, 100, {isStatic:true});
 	
-	World.add(world, bottomBody);
-	World.add(world, rightBody);
-	World.add(world, leftBody);
-
-	leftSprite = createSprite(width/1.2-100, 610, 20, 100);
-	leftSprite.shapeColor = color("white");
-
-	rightSprite = createSprite(width/1.2+100, 610, 20, 100);
-	rightSprite.shapeColor = color("white");
-
-	bottomSprite = createSprite(width/1.2, 650, 200, 20);
-	bottomSprite.shapeColor = color("white");
 
 	ball = new Ball(165, 200, 70);
 	

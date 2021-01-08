@@ -1,50 +1,51 @@
+
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
-
-var bottomBody, leftBody, rightBody, ground;
-//var ground;
-
-function preload()
-{
-	
-}
+var dustbinObject, paperObject, groundObject;
+var world;
 
 function setup() {
-	createCanvas(1800, 700);
-	background(0,0,0);
+	createCanvas(1600, 700);
+	rectMode(CENTER);
+
 
 	engine = Engine.create();
 	world = engine.world;
-
-	//Create the Bodies Here.
 	
-
-	ball = new Ball(165, 200, 70);
+	paperObject=new paper(200,450,70);
+	groundObject=new ground(width/2,670,width,20);
+	dustbinObject=new dustbin(1200,650);
 	
-	ground = new Ground(900, 650, 1800, 20);
 
 	Engine.run(engine);
-
-  
   
 }
 
 
 function draw() {
   rectMode(CENTER);
-  background(0);
+  background(230);
  
-  ball.display();
-  ground.display();
+  
+  paperObject.display();
+  groundObject.display();
+  dustbinObject.display();
+
+  
+  
  
-  drawSprites();
+  
+  
  
 }
 
 function keyPressed() {
-	if(keyCode === 38){
-		Matter.Body.applyForce(ball.body, ball.body.poistion, {x:85, y:-85});
-	}
+  	if (keyCode === UP_ARROW) {
+
+    	Matter.Body.applyForce(paperObject.body, paperObject.body.position,{x:130,y:-145});
+
+    
+  	}
 }
